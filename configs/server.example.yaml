@@ -1,0 +1,39 @@
+mode: server
+
+listen:
+  address: 0.0.0.0
+  port: 51820
+  transport: tcp
+
+network:
+  interface: zwidy0
+  cidr: 10.77.0.0/24
+  server_ip: 10.77.0.1
+  mtu: 1380
+  client_to_client: false
+  max_packet_size: 65535
+
+ipam:
+  database: /var/lib/zwidy/zwidy.db
+
+tls:
+  certificate: /etc/zwidy/server.crt
+  private_key: /etc/zwidy/server.key
+
+logging:
+  level: info
+  format: json
+  output: stdout
+
+metrics:
+  enabled: true
+  address: 127.0.0.1:9090
+
+keepalive:
+  interval: 15s
+  timeout: 45s
+
+clients:
+  - node_id: jellyfin-home
+    ip: 10.77.0.10
+    token: change-me

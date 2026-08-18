@@ -1,0 +1,40 @@
+mode: client
+
+node:
+  id: jellyfin-home
+
+server:
+  address: tunnel.example.com
+  port: 51820
+  transport: tcp
+
+network:
+  interface: zwidy0
+  cidr: 10.77.0.0/24
+  mtu: 1380
+  max_packet_size: 65535
+
+auth:
+  token: change-me
+
+tls:
+  ca: /etc/zwidy/ca.crt
+  server_name: tunnel.example.com
+
+logging:
+  level: info
+  format: json
+  output: stdout
+
+metrics:
+  enabled: true
+  address: 127.0.0.1:9090
+
+reconnect:
+  enabled: true
+  min_delay: 1s
+  max_delay: 60s
+
+keepalive:
+  interval: 15s
+  timeout: 45s
